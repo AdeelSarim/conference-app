@@ -1,0 +1,23 @@
+- What kinds of authentication you have implemented in your previous Rails projects? Which one did you prefer and why?
+	
+Answer: I have implemented Devise authentication (all kind of customizations), Devise-auth-token, Json web token and web3 authentication.
+ 
+ 
+- What ways can you think of to reduce the amount of errors in communications between 2 different Rails microservices?
+Answer: Predefined response format (success/error messages and codes), create common error handling classes.
+ 
+ 
+- Tell us about an integration you created between a Rails project and a SAAS. How did you achieve the integration, and what did you learn from your experience? What would you do different the next time around?
+Answer: Once I did an integration of AWS transcription AI to convert the audio based questions and answers in textual form and used them for further data analysis. I successfully achieved the integration, but at that time I implemented it in the form of separate service but the outcome was bit time consuming as it requires 5-6 seconds for conversions, IMPROVEMENT so to improve turnaround time, we moved this service logic within the a background worker and handled its execution as separate process.
+ 
+
+
+- What ways have you used to deploy Rails projects? Tell us about the good or the bad things you encountered.
+Answer: Yes I have used many platforms to deploy Rails projects including Elastic Bean Stalk, Docker containers, heroku, GCP, and many other deployment pipelines as well like github and gitlab.
+
+
+
+
+- When taking on an existing code base, what are the first things you would check for and request to implement if they were missing?
+ 
+Answer: I would first go through project’s readme file for any kind of app setup and instructions, then will see models and their relationship, then will see the test cases to see what should be expected from different modules.
