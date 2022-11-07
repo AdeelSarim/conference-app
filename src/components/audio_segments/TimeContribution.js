@@ -13,11 +13,9 @@ function TimeContribution({ segments, participants }) {
           })
         : ""
     );
-
     times.sort((objA, objB) => Number(objB.time) - Number(objA.time));
-
-    var mostContributionBy = times[0].name;
-    var leastContributionBy = times[times.length - 1].name;
+    var mostContributionBy = times[0] && times[0].name;
+    var leastContributionBy = times[times.length - 1] && times[times.length - 1].name;
     return { mostContributionBy, leastContributionBy };
   };
 

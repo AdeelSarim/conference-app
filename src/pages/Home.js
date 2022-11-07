@@ -7,11 +7,8 @@ import styled from "@emotion/styled";
 import AudioSegments from "../components/audio_segments/AudioSegments";
 import NewAudioSegment from "../components/audio_segments/NewAudioSegment";
 import TimeContribution from "../components/audio_segments/TimeContribution";
-
-const StyledStack = styled(Stack)(() => ({
-  flexDirection: "row",
-  gap: "10px",
-}));
+import { NoParticipantFound } from "../components/Common";
+import NewParticipant from "../components/participants/NewParticipant";
 
 const ComponentHeading = styled(Typography)(() => ({
   textAlign: "center",
@@ -27,8 +24,8 @@ function Home() {
   const [segments, setSegments] = useState(audioSegments);
   return (
     <>
-      <StyledStack>
-        <Box sx={{ width: "50%" }}>
+      <Stack direction={{ xs: "column", sm: "row" }} style={{ gap: "8px" }}>
+        <Box width={{ xs: "100%", sm: "50%" }}>
           <ComponentHeading variant="h4">Participants</ComponentHeading>
           <Participants
             participants={participants}
@@ -36,32 +33,44 @@ function Home() {
             setParticipants={setParticipants}
             setSegments={setSegments}
           />
+          <ComponentHeading variant="h4">Add New Participant</ComponentHeading>
+          <NewParticipant
+            participants={participants}
+            setParticipants={setParticipants}
+          />
+
           <ComponentHeading variant="h4">
             Most & Least contribution
           </ComponentHeading>
-          {visibleParticipants.length > 0 && (
+          {visibleParticipants.length > 0 ? (
             <TimeContribution segments={segments} participants={participants} />
+          ) : (
+            <NoParticipantFound />
           )}
-
-          <ComponentHeading variant="h4">Add Audio Segment</ComponentHeading>
-
-          <NewAudioSegment
-            participants={participants}
-            segments={segments}
-            setSegments={setSegments}
-          />
         </Box>
-        <Box sx={{ width: "50%" }}>
-          <ComponentHeading variant="h4">Audio Segments</ComponentHeading>
-          {visibleParticipants.length > 0 && (
-            <AudioSegments
+
+        <Box width={{ xs: "100%", sm: "50%" }}>
+          <ComponentHeading variant="h4">Add Audio Segment</ComponentHeading>
+          {visibleParticipants.length > 0 ? (
+            <NewAudioSegment
+              participants={visibleParticipants}
               segments={segments}
-              participants={participants}
               setSegments={setSegments}
             />
+          ) : (
+            <NoParticipantFound />
+          )}
+          <ComponentHeading variant="h4">Audio Segments</ComponentHeading>
+          {visibleParticipants.length > 0 ? (
+            <AudioSegments
+              segments={segments}
+              participants={visibleParticipants}
+            />
+          ) : (
+            <NoParticipantFound />
           )}
         </Box>
-      </StyledStack>
+      </Stack>
     </>
   );
 }

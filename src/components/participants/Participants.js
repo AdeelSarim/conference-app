@@ -32,7 +32,7 @@ export default function Participants({
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{maxHeight: '45vh', overflow: 'scroll'}}>
       <Table sx={{ minWidth: 650 }} aria-label="participants table">
         <TableHead>
           <TableRow>
