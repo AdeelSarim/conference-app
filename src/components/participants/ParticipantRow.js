@@ -16,9 +16,13 @@ function ParticipantRow({ participant, segments, handleUserVisibility }) {
     const userOccurrence = segments.filter(
       (segment) => segment.participant_id === user_id
     );
-    return moment
-      .utc((totalTimeSpeak * 1000) / userOccurrence.length)
-      .format("HH:mm:ss");
+    if (totalTimeSpeak) {
+      return moment
+        .utc((totalTimeSpeak * 1000) / userOccurrence.length)
+        .format("HH:mm:ss");
+    } else {
+      return 'Didnt participated yet'
+    }
   };
 
   return (

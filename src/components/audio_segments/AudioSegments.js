@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import moment from "moment";
 
-export default function AudioSegments({ segments, participants, setSegments }) {
+export default function AudioSegments({ segments, participants }) {
   const getUserName = (user_id) => {
     const user = participants.find(
       (participant) => participant.participant_id === user_id
@@ -20,11 +20,14 @@ export default function AudioSegments({ segments, participants, setSegments }) {
     const user = participants.find(
       (participant) => participant.participant_id === user_id
     );
-    return user.isVisible;
+    return user?.isVisible;
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ height: "50vh", overflow: "scroll" }}
+    >
       <Table sx={{ minWidth: 650 }} aria-label="participants table">
         <TableHead>
           <TableRow>
@@ -45,10 +48,10 @@ export default function AudioSegments({ segments, participants, setSegments }) {
                     {getUserName(segment.participant_id)}
                   </TableCell>
                   <TableCell align="center">
-                    {moment.utc(segment.audio_start).format("hh:mm:ss")}
+                    {moment(new Date(segment.audio_start)).format("hh:mm:ss")}
                   </TableCell>
                   <TableCell align="center">
-                    {moment.utc(segment.audio_end).format("hh:mm:ss")}
+                    {moment(new Date(segment.audio_end)).format("hh:mm:ss")}
                   </TableCell>
                 </TableRow>
               )
